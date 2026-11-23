@@ -1,30 +1,56 @@
 ﻿using System;
 
 namespace SolidRefactoringLab
-{
-    public class ReportManager
+{   
+    public interface IReportFormatter
     {
-        public string ReportData { get; set; }
+        void FormatReport();
+    }
 
-        public void GenerateReport(string reportType)
+    public class PdfFormatter : IReportFormatter
+    {
+        public void FormatReport()
         {
-            if (reportType == "PDF")
-            {
-                Console.WriteLine("Formatting report as a PDF...");
-            }
-            else if (reportType == "Word")
-            {
-                Console.WriteLine("Formatting report as a Word Document...");
-            }
-            else
-            {
-                Console.WriteLine("Formatting report as plain text...");
-            }
+            Console.WriteLine("Formatting report as a PDF...");
         }
+    }
 
+    public class WordFormatter : IReportFormatter
+    {
+        public void FormatReport()
+        {
+            Console.WriteLine("Formatting report as a Word Document...");
+        }
+    }
+
+    public class PlainTextFormatter : IReportFormatter
+    {
+        public void FormatReport()
+        {
+            Console.WriteLine("Formatting report as plain text...");
+        }
+    }
+
+    public class ReportSaver
+    {
         public void SaveToFile(string filename)
         {
             Console.WriteLine($"Saving report data to {filename}...");
+        }
+    }
+    public class ReportManager
+    {
+        private readonly IReportFormatter _formatter;
+        public string ReportData { get; set; }
+
+        public ReportManager(IReportFormatter formatter)
+        {
+            _formatter = formatter;
+        }
+
+        public void GenerateReport()
+        {
+            _formatter.FormatReport();
         }
     }
 
@@ -32,9 +58,13 @@ namespace SolidRefactoringLab
     {
         static void Main(string[] args)
         {
-            ReportManager manager = new ReportManager();
-            manager.GenerateReport("PDF");
-            manager.SaveToFile("Q1_Report.pdf");
+            IReportFormatter formatter = new PdfFormatter();
+
+            ReportManager manager = new ReportManager(formatter);
+            manager.GenerateReport();
+
+            ReportSaver saver = new ReportSaver();
+            saver.SaveToFile("Q1_Report.pdf");
         }
     }
 }

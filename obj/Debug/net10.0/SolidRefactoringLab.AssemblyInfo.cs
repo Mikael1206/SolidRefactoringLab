@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SolidRefactoringLab")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6306eca9ecf5c80fa369892950c38737cc0b2ae1")]
 [assembly: System.Reflection.AssemblyProductAttribute("SolidRefactoringLab")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SolidRefactoringLab")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
